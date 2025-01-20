@@ -1,0 +1,30 @@
+/* Fondo global para todas las páginas */
+body {
+    background-color: #f79f17;
+    font-family: Arial, sans-serif;
+    font-weight: bold; /* Todas las palabras en negrilla */
+    margin: 0; /* Eliminar márgenes del cuerpo */
+    padding: 0;
+}
+
+/* Estilo del recuadro negro */
+.header-bar {
+    background-color: black;
+    height: 100px; /* Altura del recuadro negro */
+    display: flex;
+    align-items: center; /* Centrar contenido verticalmente */
+    justify-content: center; /* Centrar contenido horizontalmente */
+    color: white;
+    font-size: 24px;
+}
+
+/* Estilo para la imagen del logo */
+.header-bar .logo {
+    height: 50px; /* Ajusta el tamaño de la imagen */
+    max-width: 100%; /* Escala la imagen proporcionalmente */
+}
+
+.btn {
+    border-radius: 10px;
+    font-size: 18px;
+}
