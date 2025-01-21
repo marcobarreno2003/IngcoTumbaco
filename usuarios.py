@@ -9,21 +9,21 @@ db_config = {
 }
 
 # Función para realizar la consulta
-def consultar_reparaciones():
+def consultar_ordenes_reparacion():
     try:
         # Conexión a la base de datos
         connection = psycopg2.connect(**db_config)
         cursor = connection.cursor()
 
         # Consulta SQL para obtener los datos de la tabla
-        query = "SELECT * FROM reparaciones;"
+        query = "SELECT * FROM ordenes_reparacion;"
         cursor.execute(query)
 
         # Recuperar todas las filas
         rows = cursor.fetchall()
 
         # Imprimir los datos
-        print("Datos en la tabla 'reparaciones':")
+        print("Datos en la tabla 'ordenes_reparacion':")
         for row in rows:
             print(row)
 
@@ -38,4 +38,4 @@ def consultar_reparaciones():
 
 # Ejecutar la función
 if __name__ == "__main__":
-    consultar_reparaciones()
+    consultar_ordenes_reparacion()

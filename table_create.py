@@ -9,37 +9,36 @@ db_config = {
     'password': '8&C%6(M^uib4',
 }
 
-def recrear_tabla_reparaciones():
+def recrear_tabla_ordenes_reparacion():
     try:
         # Conexión a la base de datos
         connection = psycopg2.connect(**db_config)
         cursor = connection.cursor()
 
         # SQL para eliminar la tabla si existe
-        cursor.execute("DROP TABLE IF EXISTS reparaciones CASCADE;")
+        cursor.execute("DROP TABLE IF EXISTS ordenes_reparacion CASCADE;")
 
-        # SQL para crear la tabla con todas las columnas como VARCHAR
+        # SQL para crear la nueva tabla con todas las columnas como VARCHAR
         crear_tabla_query = """
-        CREATE TABLE reparaciones (
+        CREATE TABLE ordenes_reparacion (
             id SERIAL PRIMARY KEY,
-            razon_social VARCHAR(255),
-            ruc VARCHAR(50),
+            ruc_ci VARCHAR(50),
+            nombre_cliente VARCHAR(255),
             telefono VARCHAR(50),
-            factura VARCHAR(50),
-            codigo_producto VARCHAR(100),
-            descripcion_producto VARCHAR(255),
-            fecha_emision_factura VARCHAR(50),
-            fin_garantia VARCHAR(50),
-            dias_vencimiento VARCHAR(50),
-            notas VARCHAR(255)
+            codigo_maquina VARCHAR(100),
+            nombre_maquina VARCHAR(255),
+            numero_serie VARCHAR(50),
+            accesorios TEXT,
+            fecha_recepcion VARCHAR(50),
+            abono VARCHAR(50)
         );
         """
         cursor.execute(crear_tabla_query)
         connection.commit()
-        print("La tabla 'reparaciones' ha sido recreada exitosamente con todas las columnas como VARCHAR.")
+        print("La tabla 'ordenes_reparacion' ha sido recreada exitosamente con todas las columnas como VARCHAR.")
     
     except Exception as e:
-        print(f"Error al recrear la tabla 'reparaciones': {e}")
+        print(f"Error al recrear la tabla 'ordenes_reparacion': {e}")
     
     finally:
         if connection:
@@ -48,4 +47,5 @@ def recrear_tabla_reparaciones():
 
 # Ejecutar la función
 if __name__ == "__main__":
-    recrear_tabla_reparaciones()
+    recrear_tabla_ordenes_reparacion()
+

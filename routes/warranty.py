@@ -49,5 +49,3 @@ def check():
                 connection.close()
 
     return render_template("warranty.html", results=results)
-
-
