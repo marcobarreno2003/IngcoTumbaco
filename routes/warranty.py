@@ -24,11 +24,35 @@ def check():
             # Definir la consulta SQL en base al tipo de búsqueda
             query = ""
             if search_type == "ruc":
-                query = "SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, fecha_emision_factura, fin_garantia, dias_vencimiento, notas FROM reparaciones WHERE ruc = %s"
+                query = """
+                SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, 
+                       fecha_emision_factura, fin_garantia, dias_vencimiento, notas 
+                FROM reparaciones 
+                WHERE ruc = %s
+                """
             elif search_type == "codigo_producto":
-                query = "SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, fecha_emision_factura, fin_garantia, dias_vencimiento, notas FROM reparaciones WHERE codigo_producto = %s"
+                query = """
+                SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, 
+                       fecha_emision_factura, fin_garantia, dias_vencimiento, notas 
+                FROM reparaciones 
+                WHERE codigo_producto = %s
+                """
+            elif search_type == "numero_serie":
+                query = """
+                SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, 
+                       fecha_emision_factura, fin_garantia, dias_vencimiento, notas 
+                FROM reparaciones 
+                WHERE notas LIKE %s
+                """
+                # Buscar de forma parcial
+                search_value = f"%{search_value}%"
             elif search_type == "factura":
-                query = "SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, fecha_emision_factura, fin_garantia, dias_vencimiento, notas FROM reparaciones WHERE factura = %s"
+                query = """
+                SELECT ruc, razon_social, codigo_producto, descripcion_producto, factura, 
+                       fecha_emision_factura, fin_garantia, dias_vencimiento, notas 
+                FROM reparaciones 
+                WHERE factura = %s
+                """
 
             # Ejecutar la consulta
             cursor.execute(query, (search_value,))
